@@ -5,19 +5,19 @@ export default class Navbar extends Component {
   state = {
     search: '',
   }
-
+//Generates API search
   handleChange = event => {
-    this.setState({ name: event.target.value });
+    this.setState({ search: event.target.value });
   }
-
+//Changes new search 
   handleSubmit = event => {
     event.preventDefault();
 
     const newSearch = {
       search: this.state.search
     };
-
-    axios.get(`https://hn.algolia.com/api/v1/search?query=`, { newSearch })
+//Call to API with User Input
+    axios.get('https://hn.algolia.com/api/v1/search?query='+ newSearch.search )
       .then(res => {
         console.log(res);
         console.log(res.data);
